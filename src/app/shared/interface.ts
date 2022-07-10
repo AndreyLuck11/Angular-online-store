@@ -1,3 +1,8 @@
+export interface Resp {
+  count: number;
+  rows: Product[]
+}
+
 export interface Product {
   id: number;
   name: string;

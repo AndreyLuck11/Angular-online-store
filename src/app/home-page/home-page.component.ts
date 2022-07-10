@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from "../shared/interface";
+import {ProductService} from "../shared/product.service";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  product$: Observable<Product[]>;
+  // product: Product[];
 
-  ngOnInit(): void {
+  constructor(private productService: ProductService) {
   }
+
+  ngOnInit() {
+    this.product$ = this.productService.getAll().pipe(tap(console.log));
+  }
+
+  // ngOnInit() {
+  //   this.productService.getAll().subscribe(data => {
+  //     console.log(data);
+  //     this.product = data;
+  //   });
+  //}
 
 }

@@ -11,6 +11,9 @@ import {InputTextModule} from "primeng/inputtext";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {HttpClientModule} from "@angular/common/http";
+import {HomePageComponent} from "./home-page/home-page.component";
+import {RippleModule} from "primeng/ripple";
+import {PaginatorModule} from "primeng/paginator";
 
 
 @NgModule({
@@ -18,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     NavbarComponent,
     ProductComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,9 @@ import {HttpClientModule} from "@angular/common/http";
     InputTextModule,
     CardModule,
     ButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    RippleModule,
+    PaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
