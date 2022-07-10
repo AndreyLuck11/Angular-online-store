@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Product} from "./interface";
 import {Observable} from "rxjs";
 
@@ -10,7 +10,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:5000/api/device');
+
+  getAll({page}: { page: any }): Observable<Product[]> {
+    let params = new HttpParams()
+    params = params.append('page', page );
+    return this.http.get<Product[]>('http://localhost:5000/api/device', {params: params});
   }
 }

@@ -13,18 +13,20 @@ export class HomePageComponent implements OnInit {
   product$: Observable<Product[]>;
   // product: Product[];
 
+  page: any
+
   constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.product$ = this.productService.getAll().pipe(tap(console.log));
+    this.page = 1;
+    this.product$ = this.productService.getAll({page: this.page}).pipe(tap(console.log));
   }
 
-  // ngOnInit() {
-  //   this.productService.getAll().subscribe(data => {
-  //     console.log(data);
-  //     this.product = data;
-  //   });
-  //}
 
+
+  onPageChange($event: any) {
+     console.log($event.page + 1);
+    this.product$ = this.productService.getAll({page: $event.page + 1}).pipe(tap(console.log));
+  }
 }
