@@ -11,6 +11,7 @@ const routes: Routes = [{
   path: '', component: NavbarComponent, children: [
     {path: '', redirectTo: '/', pathMatch: 'full'},
     {path: '', component: HomePageComponent},
+    {path: 'category', loadChildren: () => import('./category-page/category-page.module').then(m => m.CategoryPageModule)}
     // {path: 'category/:category', component: CategoryPageComponent },
     // {path: 'product/:id', component: ProductPageComponent}
   ]

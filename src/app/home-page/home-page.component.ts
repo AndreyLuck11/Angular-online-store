@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../shared/interface";
 import {ProductService} from "../shared/product.service";
-import {Observable, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-home-page',
@@ -13,6 +13,8 @@ export class HomePageComponent implements OnInit {
   product$: Observable<Product[]>;
   // product: Product[];
 
+  count: number
+
   page: any
 
   constructor(private productService: ProductService) {
@@ -20,13 +22,15 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.page = 1;
-    this.product$ = this.productService.getAll({page: this.page}).pipe(tap(console.log));
+    this.product$ = this.productService.getAll({page: this.page}).pipe(tap(resp => {this.count = resp.count}), map(resp => resp.rows));
+    // count =
   }
-
+//вынести в сервис
 
 
   onPageChange($event: any) {
      console.log($event.page + 1);
-    this.product$ = this.productService.getAll({page: $event.page + 1}).pipe(tap(console.log));
+     console.log(this.count)
+    this.product$ = this.productService.getAll({page: $event.page + 1}).pipe(map(resp => resp.rows));
   }
 }
