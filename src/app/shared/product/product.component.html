@@ -9,7 +9,7 @@
 
     <ng-template pTemplate="footer">
       <p-button label="Открыть" [routerLink]="['/product', product.id]" ></p-button>
-      <button pButton pRipple type="button" label="В корзину" class="p-button-danger"></button>
+      <button pButton pRipple type="button" label="В корзину" class="p-button-danger"(click)="cart.pushToCart(product)" ></button>
     </ng-template>
   </p-card>
 

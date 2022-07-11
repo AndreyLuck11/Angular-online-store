@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
+import {CartService} from "../../cart-page/cart.service";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
   value1: any;
 
-  constructor() { }
+  constructor(public cart: CartService) { }
 
   ngOnInit(): void {
     this.items = [
