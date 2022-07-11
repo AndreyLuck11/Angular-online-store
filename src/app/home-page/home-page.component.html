@@ -2,7 +2,7 @@
   <div class="product" *ngIf="product$ | async as products; else loading">
      <app-product *ngFor="let product of products" [product]="product" style="flex: 0 1 25%"></app-product>
    </div>
-  <p-paginator [rows]="10" [totalRecords]="120" (onPageChange)="onPageChange($event)" ></p-paginator>
+  <p-paginator [rows]="8"  [totalRecords]="count" (onPageChange)="onPageChange($event)" ></p-paginator>
   <ng-template #loading>
     <p class="text-center">Загрузка</p>
   </ng-template>

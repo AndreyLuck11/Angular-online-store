@@ -14,8 +14,7 @@ export class HomePageComponent implements OnInit {
   // product: Product[];
 
   count: number
-
-  page: any
+  page: number
 
   constructor(private productService: ProductService) {
   }
@@ -23,14 +22,13 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.page = 1;
     this.product$ = this.productService.getAll({page: this.page}).pipe(tap(resp => {this.count = resp.count}), map(resp => resp.rows));
+
     // count =
   }
 //вынести в сервис
 
 
   onPageChange($event: any) {
-     console.log($event.page + 1);
-     console.log(this.count)
     this.product$ = this.productService.getAll({page: $event.page + 1}).pipe(map(resp => resp.rows));
   }
 }

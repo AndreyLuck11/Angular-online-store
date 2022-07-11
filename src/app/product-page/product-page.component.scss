@@ -1,0 +1,21 @@
+.conteiner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-page{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    &__image {
+      margin-right: 100px;
+    }
+    &__button-sec {
+      display: flex;
+      flex-direction: column;
+      button {
+        margin-top: 10px;
+      }
+    }
+}
+

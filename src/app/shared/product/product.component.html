@@ -8,7 +8,7 @@
     <ng-template pTemplate="subtitle">{{product.price}}</ng-template>
 
     <ng-template pTemplate="footer">
-      <p-button label="Открыть"></p-button>
+      <p-button label="Открыть" [routerLink]="['/product', product.id]" ></p-button>
       <button pButton pRipple type="button" label="В корзину" class="p-button-danger"></button>
     </ng-template>
   </p-card>
