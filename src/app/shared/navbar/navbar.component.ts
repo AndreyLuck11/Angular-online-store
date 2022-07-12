@@ -30,35 +30,35 @@ export class NavbarComponent implements OnInit {
         label: 'Телефоны',
         icon: 'pi pi-fw pi-mobile',
         command: (event) => {
-          this.router.navigate(['/category/1'])
+          this.router.navigate(['/category', 1])
         }
       },
       {
         label: 'Компьютеры',
         icon: 'pi pi-fw pi-desktop',
         command: (event) => {
-          this.router.navigate(['/category/2'])
+          this.router.navigate(['/category', 2])
         }
       },
       {
         label: 'Бытовая техника',
         icon: 'pi pi-fw pi-building',
         command: (event) => {
-          this.router.navigate(['/category/3'])
+          this.router.navigate(['/category', 3])
         }
       },
       {
         label: 'Офисная переферия',
         icon: 'pi pi-fw pi-print',
         command: (event) => {
-          this.router.navigate(['/category/4'])
+          this.router.navigate(['/category', 4])
         }
       },
       {
         label: 'Аксесуары',
         icon: 'pi pi-fw pi-star',
         command: (event) => {
-          this.router.navigate(['/category/5'])
+          this.router.navigate(['/category', 5])
         }
       }
     ];

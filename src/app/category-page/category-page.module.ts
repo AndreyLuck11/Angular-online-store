@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CategoryPageRoutingModule } from './category-page-routing.module';
 import {CategoryPageComponent} from "./category-page.component";
+import {PaginatorModule} from "primeng/paginator";
+import {ProductModule} from "../shared/product/product.module";
 
 
 @NgModule({
@@ -10,6 +12,8 @@ import {CategoryPageComponent} from "./category-page.component";
   imports: [
     CommonModule,
     CategoryPageRoutingModule,
+    PaginatorModule,
+    ProductModule,
   ]
 })
 export class CategoryPageModule { }

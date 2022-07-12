@@ -17,6 +17,13 @@ export class ProductService {
     return this.http.get<Resp>('http://localhost:5000/api/device', {params: params});
   }
 
+  getByCategory(page: any, typeId: any): Observable<Resp> {
+    let params = new HttpParams()
+    params = params.append('page', page );
+    params = params.append('typeId', typeId );
+    return this.http.get<Resp>('http://localhost:5000/api/device', {params: params});
+  }
+
   getById(id: string): Observable<Product> {
     return this.http.get<Product>(`http://localhost:5000/api/device/${id}`);
   }
