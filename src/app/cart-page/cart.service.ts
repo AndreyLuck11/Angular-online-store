@@ -9,7 +9,7 @@ export class CartService {
   constructor() {}
 
   data: string | null
-  dataErr: [Object]
+  dataArr: Product[]
 
   pushToCart(product: Product) {
     this.data = localStorage.getItem('cart');
@@ -19,9 +19,9 @@ export class CartService {
         localStorage.setItem('cart', this.data);
         this.data = localStorage.getItem('cart');
       } else {
-        this.dataErr = JSON.parse(this.data);
-        this.dataErr.push(product);
-        this.data = JSON.stringify(this.dataErr);
+        this.dataArr = JSON.parse(this.data);
+        this.dataArr.push(product);
+        this.data = JSON.stringify(this.dataArr);
         localStorage.setItem('cart', this.data);
       }
   }
@@ -31,6 +31,16 @@ export class CartService {
 
     if (this.data !== null) {
       return  JSON.parse(this.data)
+    }
+  }
+
+  deleteProduct(id: number) {
+    this.data = localStorage.getItem('cart');
+    if (this.data !== null) {
+      this.dataArr = JSON.parse(this.data);
+      this.dataArr = this.dataArr.filter(product => product.id !== id)
+      this.data = JSON.stringify(this.dataArr);
+      localStorage.setItem('cart', this.data);
     }
   }
 }

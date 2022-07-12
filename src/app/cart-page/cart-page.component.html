@@ -1,9 +1,27 @@
 <div class="conteiner">
-  <div class="product" *ngIf="products.length > 0; else loading">
-    <app-product *ngFor="let product of products" [product]="product" style="flex: 0 1 25%"></app-product>
+  <div *ngIf="products.length > 0; else empty">
+    <p-table [value]="products">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Изображение</th>
+          <th>Название</th>
+          <th>Цена</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-products>
+        <tr>
+          <td><img src="http://localhost:5000/{{products.img}}" alt="device" style="width: 50px"></td>
+          <td>{{products.name}}</td>
+          <td>{{products.price}}руб</td>
+          <td  style="text-align: center" ><button pButton pRipple type="button" class="p-button-danger" (click)="delete(products.id)">Удалить</button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div style="font-size: 20px">Цена всех товаров: {{totalPrice}}руб</div>
+    <button pButton pRipple type="button"  class="p-button-success" style="margin: 10px auto; display: block;">Перейти к оформлению заказа</button>
   </div>
-
-  <ng-template #loading>
-    <p class="text-center">Загрузка</p>
+  <ng-template #empty>
+    <p class="text-center" style="text-align: center; font-size: 40px">Корзина пустая, поэтому корзина скучает... :(</p>
   </ng-template>
 </div>

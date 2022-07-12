@@ -5,6 +5,9 @@ import { CartPageRoutingModule } from './cart-page-routing.module';
 import { CartPageComponent } from './cart-page.component';
 import {PaginatorModule} from "primeng/paginator";
 import {ProductModule} from "../shared/product/product.module";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import {ProductModule} from "../shared/product/product.module";
     CommonModule,
     CartPageRoutingModule,
     PaginatorModule,
-    ProductModule
+    ProductModule,
+    TableModule,
+    ButtonModule,
+    RippleModule
   ]
 })
 export class CartPageModule { }
