@@ -2,7 +2,7 @@
 <p-menubar [model]="items">
   <span class="p-input-icon-left">
     <i class="pi pi-search"></i>
-     <button pButton pRipple type="button" label="Корзина" class="p-button-danger" (click)="cart.getProducts()"></button>
+     <button pButton pRipple type="button" label="Корзина" class="p-button-danger" routerLink="/cart"></button>
     <input type="text" pInputText placeholder="Search" [(ngModel)]="value1" />
   </span>
 </p-menubar>

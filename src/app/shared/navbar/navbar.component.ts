@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {InputTextModule} from 'primeng/inputtext';
 import {CartService} from "../../cart-page/cart.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,13 +14,17 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
   value1: any;
 
-  constructor(public cart: CartService) { }
+  constructor(public cart: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.items = [
       {
         label: 'Главная',
         icon: 'pi pi-fw pi-home',
+        command: (event) => {
+          this.router.navigate(['/'])
+        }
       },
       {
         label: 'Телефоны',

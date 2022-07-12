@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ProductComponent } from './shared/product/product.component';
 import {MenubarModule} from "primeng/menubar";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
@@ -15,13 +14,13 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {RippleModule} from "primeng/ripple";
 import {PaginatorModule} from "primeng/paginator";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ProductModule} from "./shared/product/product.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProductComponent,
     HomePageComponent
   ],
   imports: [
@@ -35,9 +34,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     RippleModule,
     PaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProductModule
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

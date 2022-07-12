@@ -27,9 +27,10 @@ export class CartService {
   }
 
   getProducts() {
-    console.log(this.data)
-    if (typeof this.data === "string") {
-      console.log(JSON.parse(this.data));
+    this.data = localStorage.getItem('cart')
+
+    if (this.data !== null) {
+      return  JSON.parse(this.data)
     }
   }
 }
