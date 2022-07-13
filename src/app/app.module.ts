@@ -19,14 +19,12 @@ import {ProductModule} from "./shared/product/product.module";
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
     FormsModule,
-    InputTextModule,
     CardModule,
     ButtonModule,
     HttpClientModule,
