@@ -10,7 +10,6 @@ import {InputTextModule} from "primeng/inputtext";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {HttpClientModule} from "@angular/common/http";
-import {HomePageComponent} from "./home-page/home-page.component";
 import {RippleModule} from "primeng/ripple";
 import {PaginatorModule} from "primeng/paginator";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -21,7 +20,6 @@ import {ProductModule} from "./shared/product/product.module";
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomePageComponent
   ],
   imports: [
     BrowserModule,

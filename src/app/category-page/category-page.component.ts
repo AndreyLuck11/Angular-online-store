@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, Observable, switchMap, tap} from "rxjs";
 import {Product} from "../shared/interface";
 import {ProductService} from "../shared/product.service";
@@ -48,4 +48,5 @@ export class CategoryPageComponent implements OnInit {
         return this.productService.getByCategory($event.page + 1, category);
       }), tap(resp => {this.count = resp.count}), map(resp => resp.rows));
   }
+
 }

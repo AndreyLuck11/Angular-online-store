@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {CartService} from "../../cart-page/cart.service";
 import {Router} from "@angular/router";
 
 
@@ -14,8 +13,7 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[];
   value1: any;
 
-  constructor(public cart: CartService,
-              private router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
     this.items = [
@@ -30,35 +28,35 @@ export class NavbarComponent implements OnInit {
         label: 'Телефоны',
         icon: 'pi pi-fw pi-mobile',
         command: (event) => {
-          this.router.navigate(['/category', 1])
+          this.router.navigate(['/category', '1'])
         }
       },
       {
         label: 'Компьютеры',
         icon: 'pi pi-fw pi-desktop',
         command: (event) => {
-          this.router.navigate(['/category', 2])
+          this.router.navigate(['/category', '2'])
         }
       },
       {
         label: 'Бытовая техника',
         icon: 'pi pi-fw pi-building',
         command: (event) => {
-          this.router.navigate(['/category', 3])
+          this.router.navigate(['/category', '3'])
         }
       },
       {
         label: 'Офисная переферия',
         icon: 'pi pi-fw pi-print',
         command: (event) => {
-          this.router.navigate(['/category', 4])
+          this.router.navigate(['/category', '4'])
         }
       },
       {
         label: 'Аксесуары',
         icon: 'pi pi-fw pi-star',
         command: (event) => {
-          this.router.navigate(['/category', 5])
+          this.router.navigate(['/category', '5'])
         }
       }
     ];

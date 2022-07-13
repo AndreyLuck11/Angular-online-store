@@ -11,7 +11,7 @@ export class CartPageComponent implements OnInit {
 
   constructor(public cart: CartService) { }
 
-  products: Product[]
+  products: Product[] = []
   totalPrice: number = 0
 
 

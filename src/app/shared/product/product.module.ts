@@ -4,6 +4,7 @@ import {ProductComponent} from "./product.component";
 import {ButtonModule} from "primeng/button";
 import {RouterModule} from "@angular/router";
 import {CardModule} from "primeng/card";
+import {RippleModule} from "primeng/ripple";
 
 
 
@@ -13,7 +14,8 @@ import {CardModule} from "primeng/card";
     CommonModule,
     ButtonModule,
     RouterModule,
-    CardModule
+    CardModule,
+    RippleModule
   ],
   exports: [ProductComponent]
 })
