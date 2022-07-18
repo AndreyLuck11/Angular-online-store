@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { NoPreloading, RouterModule, Routes } from '@angular/router';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'cart',
     loadChildren: () =>
-      import('./home-page/home-page.module').then((m) => m.HomePageModule),
+      import('./cart-page/cart-page.module').then((m) => m.CartPageModule),
   },
   {
     path: '',
@@ -22,11 +21,7 @@ const routes: Routes = [
         (m) => m.ProductPageModule
       ),
   },
-  {
-    path: 'cart',
-    loadChildren: () =>
-      import('./cart-page/cart-page.module').then((m) => m.CartPageModule),
-  },
+
 ];
 
 @NgModule({
