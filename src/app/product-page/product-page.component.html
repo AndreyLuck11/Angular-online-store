@@ -1,25 +1,48 @@
 <div class="conteiner">
   <div *ngIf="product$ | async as product; else loading">
-  <div class="product-page">
-    <div class="product-page__image">
-      <p-image src="http://localhost:5000/{{product.img}}" alt="Image" width="350" [preview]="true"></p-image>
-    </div>
-    <div class="product-page__description">
-      <h1>{{product.name}}</h1>
-      <h2>Цена: {{product.price}}руб</h2>
-      <div class="product-page__button-sec">
-        <button pButton pRipple type="button" label="Купить" class="p-button-success" icon="pi pi-check"></button>
-        <button pButton pRipple type="button" label="В корзину" class="p-button-danger" icon="pi pi-shopping-cart"></button>
-        <button pButton pRipple type="button" label="Назад" icon="pi pi-chevron-left" (click)="back()"></button>
+    <div class="product-page">
+      <div class="product-page__image">
+        <p-image
+          src="http://localhost:5001/{{ product.img }}"
+          alt="Image"
+          width="350"
+          [preview]="true"
+        ></p-image>
+      </div>
+      <div class="product-page__description">
+        <h1>{{ product.name }}</h1>
+        <h2>Цена: {{ product.price }}руб</h2>
+        <div class="product-page__button-sec">
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Купить"
+            class="p-button-success"
+            icon="pi pi-check"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="В корзину"
+            class="p-button-danger"
+            icon="pi pi-shopping-cart"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Назад"
+            icon="pi pi-chevron-left"
+            (click)="back()"
+          ></button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
   <ng-template #loading>
     <p class="text-center">Загрузка</p>
   </ng-template>
 </div>
-
-
-

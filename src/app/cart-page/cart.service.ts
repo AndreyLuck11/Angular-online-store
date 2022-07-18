@@ -1,46 +1,33 @@
 import { Injectable } from '@angular/core';
-import {Product} from "../shared/interface";
+import { BehaviorSubject } from 'rxjs';
+import { Product } from '../shared/interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
+  public products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(
+    []
+  );
 
-  constructor() {}
-
-  data: string | null
-  dataArr: Product[]
-
-  pushToCart(product: Product) {
-    this.data = localStorage.getItem('cart');
-      if (this.data === null) {
-        this.data = JSON.stringify(product);
-        this.data = '[' + this.data + ']'
-        localStorage.setItem('cart', this.data);
-        this.data = localStorage.getItem('cart');
-      } else {
-        this.dataArr = JSON.parse(this.data);
-        this.dataArr.push(product);
-        this.data = JSON.stringify(this.dataArr);
-        localStorage.setItem('cart', this.data);
-      }
+  constructor() {
+    // сетать айдишники продуктов
+    const data = localStorage.getItem('cart');
+    if (data !== null) {
+      this.products$.next(JSON.parse(data));
+    }
+    this.products$.subscribe((products: Product[]) =>
+      localStorage.setItem('cart', JSON.stringify(products))
+    );
   }
 
-  getProducts() {
-    this.data = localStorage.getItem('cart')
-
-    if (this.data !== null) {
-      return  JSON.parse(this.data)
-    }
+  public pushToCart(product: Product) {
+    this.products$.next([...this.products$.value, product]);
   }
 
-  deleteProduct(id: number) {
-    this.data = localStorage.getItem('cart');
-    if (this.data !== null) {
-      this.dataArr = JSON.parse(this.data);
-      this.dataArr = this.dataArr.filter(product => product.id !== id)
-      this.data = JSON.stringify(this.dataArr);
-      localStorage.setItem('cart', this.data);
-    }
+  public deleteProduct(id: number) {
+    this.products$.next([
+      ...this.products$.value.filter((product) => product.id !== id),
+    ]);
   }
 }
