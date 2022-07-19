@@ -15,8 +15,7 @@ export class CartPageComponent implements OnInit {
   totalPrice: number = 0;
 
   ngOnInit(): void {
-    console.log(this.cart.products$.value);
-    this.priceCalculation();
+
   }
 
   delete(id: number) {

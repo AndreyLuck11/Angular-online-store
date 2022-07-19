@@ -21,7 +21,7 @@ export class ProductService {
     });
   }
 
-  getById(id: string): Observable<Product> {
+  getById(id: number): Observable<Product> {
     return this.http.get<Product>(`http://localhost:5000/api/device/${id}`);
   }
 }
