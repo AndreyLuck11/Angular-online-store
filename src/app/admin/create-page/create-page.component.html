@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+        <h1>Добавить новый товар</h1>
+  <div class="grid p-fluid">
+
+        <div class="field col-offset-2 col-8"
+             [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}">
+           <span class="p-float-label">
+              <input id="float-input-name" type="text" pInputText formControlName="name"/>
+              <label for="float-input-name">Название устройства</label>
+           </span>
+          <div
+            *ngIf="form.get('name').touched && form.get('name').invalid"
+            class="validation">
+            <small class="p-error block" *ngIf="form.get('name').errors?.['required']">Введите название товара</small>
+          </div>
+        </div>
+
+        <div class="field col-offset-2 col-8"
+             [ngClass]="{invalid: form.get('price').touched && form.get('price').invalid}">
+          <span class="p-float-label">
+              <p-inputNumber inputId="float-input-price" formControlName="price"></p-inputNumber>
+              <label for="float-input-price">Цена устройства</label>
+           </span>
+          <div
+            *ngIf="form.get('price').touched && form.get('price').invalid"
+            class="validation">
+            <small class="p-error block" *ngIf="form.get('price').errors?.['required']">Введите цену товара</small>
+          </div>
+        </div>
+
+      <div class="field col-offset-2 col-8"
+           [ngClass]="{invalid: form.get('typeId').touched && form.get('typeId').invalid}">
+        <p-dropdown [options]="typeId" placeholder="Выберите категорию товара" optionLabel="name" formControlName="typeId" [showClear]="true"></p-dropdown>
+        <div
+          *ngIf="form.get('typeId').touched && form.get('typeId').invalid"
+          class="validation">
+          <small class="p-error block" *ngIf="form.get('typeId').errors?.['required']">Выберите тип</small>
+        </div>
+      </div>
+
+    <div class="field col-offset-2 col-8"
+         [ngClass]="{invalid: form.get('brandId').touched && form.get('brandId').invalid}">
+      <p-dropdown [options]="brandId" placeholder="Выберите категорию товара" optionLabel="name" formControlName="brandId" [showClear]="true"></p-dropdown>
+      <div
+        *ngIf="form.get('brandId').touched && form.get('brandId').invalid"
+        class="validation">
+        <small class="p-error block" *ngIf="form.get('brandId').errors?.['required']">Выберите бренд</small>
+      </div>
+    </div>
+
+    <div class="field col-offset-2 col-8">
+      <h2>Прикрепить изображение</h2>
+      <input type="file" accept="image/*" formControlName="img" (change)="onFileChange($event)">>
+    </div>
+
+
+  </div>
+        <button
+          type="submit"
+          class="btn btn-block btn-dark"
+          [disabled]="form.invalid"
+        >Создать пост</button>
+      </form>

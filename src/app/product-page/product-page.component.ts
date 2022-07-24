@@ -4,6 +4,8 @@ import {Product} from "../shared/interface";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ProductService} from "../shared/product.service";
 import {NavigationService} from "../shared/navigate.service";
+import {environment} from "../../environments/environment";
+
 
 @Component({
   selector: 'app-product-page',
@@ -12,7 +14,8 @@ import {NavigationService} from "../shared/navigate.service";
 })
 export class ProductPageComponent implements OnInit {
 
-  product$: Observable<Product>
+  product$: Observable<Product>;
+  url = environment.apiURL;
 
   constructor(
     private route: ActivatedRoute,

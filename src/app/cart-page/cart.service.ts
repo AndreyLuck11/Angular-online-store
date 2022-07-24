@@ -45,9 +45,3 @@ export class CartService {
     ]);
   }
 }
-
-
-
-// .pipe(switchMap(({id}: Params) => {
-//   return this.productService.getById(id);
-// }), tap(response => {console.log(response)}));

@@ -3,6 +3,11 @@ import { NoPreloading, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: 'cart',
     loadChildren: () =>
       import('./cart-page/cart-page.module').then((m) => m.CartPageModule),
