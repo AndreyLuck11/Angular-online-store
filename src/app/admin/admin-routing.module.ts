@@ -7,6 +7,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./create-page/create-page.module').then((m) => m.CreatePageModule),
   },
+  {
+    path: 'edit',
+    loadChildren: () =>
+      import('./edit-page/edit-page.module').then((m) => m.EditPageModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard-page/dashboard-page.module').then((m) => m.DashboardPageModule),
+  },
 ];
 
 @NgModule({
