@@ -12,22 +12,9 @@ import { BehaviorSubject } from 'rxjs';
 export class CartPageComponent implements OnInit {
   constructor(public cart: CartService) {}
 
-  totalPrice: number = 0;
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   delete(id: number) {
     this.cart.deleteProduct(id);
-    this.priceCalculation();
-  }
-
-  priceCalculation() {
-    this.totalPrice = 0;
-    for (let i = 0; i < this.cart.products$.value.length; i++) {
-      this.totalPrice =
-        this.totalPrice + Number(this.cart.products$.value[i].price);
-    }
   }
 }

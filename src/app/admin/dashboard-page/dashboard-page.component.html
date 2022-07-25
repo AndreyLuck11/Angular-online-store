@@ -1,5 +1,8 @@
 <div class="grid">
-  <div class="col-10 col-offset-1" *ngIf="product$ | async as products; else loading">
+  <div
+    class="col-10 col-offset-1"
+    *ngIf="product$ | async as products; else loading"
+  >
     <p-table [value]="product$ | async">
       <ng-template pTemplate="header">
         <tr>
@@ -13,7 +16,7 @@
         <tr>
           <td>
             <img
-              src="http://localhost:5000/{{ products.img }}"
+              src="http://localhost:5001/{{ products.img }}"
               alt="device"
               style="width: 50px"
             />
@@ -43,7 +46,6 @@
                 Удалить
               </button>
             </div>
-
           </td>
         </tr>
       </ng-template>
@@ -59,7 +61,13 @@
 
   <ng-template #loading>
     <div class="col-10 col-offset-1" style="text-align: center">
-      <p-progressSpinner [style]="{width: '100px', height: '100px', margin: 'auto auto'}" styleClass="custom-spinner" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+      <p-progressSpinner
+        [style]="{ width: '100px', height: '100px', margin: 'auto auto' }"
+        styleClass="custom-spinner"
+        strokeWidth="8"
+        fill="var(--surface-ground)"
+        animationDuration=".5s"
+      ></p-progressSpinner>
     </div>
   </ng-template>
 </div>
