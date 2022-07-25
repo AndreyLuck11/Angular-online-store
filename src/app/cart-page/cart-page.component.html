@@ -1,6 +1,6 @@
-<div class="conteiner">
-  <div *ngIf="cart.products$.value.length > 0; else empty">
-    <p-table [value]="cart.products$ | async">
+<div class="conteiner" *ngIf="cart.products$ | async as products">
+  <div *ngIf="products.length > 0; else empty">
+    <p-table [value]="products">
       <ng-template pTemplate="header">
         <tr>
           <th>Изображение</th>
@@ -13,7 +13,7 @@
         <tr>
           <td>
             <img
-              src="http://localhost:5000/{{ products.img }}"
+              src="http://localhost:5001/{{ products.img }}"
               alt="device"
               style="width: 50px"
             />
@@ -34,7 +34,9 @@
         </tr>
       </ng-template>
     </p-table>
-    <div style="font-size: 20px">Цена всех товаров: {{ totalPrice }}руб</div>
+    <div style="font-size: 20px">
+      Цена всех товаров: {{ cart.totalPrice$ | async }}руб
+    </div>
     <button
       pButton
       pRipple
