@@ -1,6 +1,6 @@
-<p-card
+<p-card class="product"
   styleClass="p-card-shadow"
-  [style]="{ width: '320px', height: '380px', marginBottom: '10px' }"
+  [style]="{ width: '320px', height: '400px', marginBottom: '10px' }"
 >
   <ng-template pTemplate="header">
     <img
@@ -18,6 +18,7 @@
       label="Открыть"
       [routerLink]="['/product', product.id]"
     ></p-button>
+
     <button
       pButton
       pRipple
@@ -27,7 +28,28 @@
       (click)="addToCart(product.id)"
     ></button>
 
+
+    <div *ngFor="let longOrder of longOrders">
+      <div *ngIf="longOrder.product.id === product.id">
+        <p-inputNumber [ngModel]="longOrder.count" mode="decimal"
+                       [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="100"
+                       (ngModelChange)="cartService.changeCount(longOrder.product.id, $event)">
+        </p-inputNumber>
+      </div>
+    </div>
   </ng-template>
+
+  <ng-template #addButton>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="В корзину"
+      class="p-button-danger"
+      (click)="addToCart(product.id)"
+    ></button>
+  </ng-template>
+
 </p-card>
 
 <!--  [style]="{width: '360px', height: '360px'}"-->

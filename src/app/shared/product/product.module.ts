@@ -5,6 +5,8 @@ import {ButtonModule} from "primeng/button";
 import {RouterModule} from "@angular/router";
 import {CardModule} from "primeng/card";
 import {RippleModule} from "primeng/ripple";
+import {InputNumberModule} from "primeng/inputnumber";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -15,7 +17,9 @@ import {RippleModule} from "primeng/ripple";
     ButtonModule,
     RouterModule,
     CardModule,
-    RippleModule
+    RippleModule,
+    InputNumberModule,
+    FormsModule
   ],
   exports: [ProductComponent]
 })
