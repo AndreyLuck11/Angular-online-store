@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {map, Observable, tap} from "rxjs";
 import {ProductService} from "../../shared/product.service";
 import {Product} from "../../shared/interface";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-dashboard-page',
@@ -14,7 +15,7 @@ export class DashboardPageComponent implements OnInit {
 
   count: number;
   page: number;
-  i: number = 1;
+  url = environment.apiURL;
 
   constructor(private productService: ProductService) {}
 
@@ -38,6 +39,6 @@ export class DashboardPageComponent implements OnInit {
   }
 
   delete(id: number) {
-
+    return this.productService.deleteById(id);
   }
 }

@@ -7,6 +7,7 @@ import {
   TypeId,
 } from '../../shared/interface';
 import { ProductService } from '../../shared/product.service';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-create-page',

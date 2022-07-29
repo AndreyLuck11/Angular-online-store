@@ -29,4 +29,8 @@ export class ProductService {
   create(data: any): Observable<ProductPost> {
     return this.http.post<ProductPost>(`${environment.apiURL}/api/device`, data);
   }
+
+  deleteById(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${environment.apiURL}/api/device`);
+  }
 }

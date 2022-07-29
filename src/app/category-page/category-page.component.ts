@@ -8,6 +8,7 @@ import { map, Observable, switchMap, tap } from 'rxjs';
 import { Product } from '../shared/interface';
 import { ProductService } from '../shared/product.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import {CartService} from "../cart-page/cart.service";
 
 @Component({
   selector: 'app-category-page',

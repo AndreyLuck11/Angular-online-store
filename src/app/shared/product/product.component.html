@@ -5,7 +5,7 @@
   <ng-template pTemplate="header">
     <img
       alt="Card"
-      src="http://localhost:5001/{{ product.img }}"
+      src="{{url}}/{{ product.img }}"
       [style]="{ width: '100%', height: '200px', objectFit: 'cover' }"
     />
   </ng-template>
@@ -26,6 +26,7 @@
       class="p-button-danger"
       (click)="addToCart(product.id)"
     ></button>
+
   </ng-template>
 </p-card>
 

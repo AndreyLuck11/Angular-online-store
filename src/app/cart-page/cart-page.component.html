@@ -1,32 +1,39 @@
-<div class="conteiner" *ngIf="cart.products$ | async as products">
-  <div *ngIf="products.length > 0; else empty">
-    <p-table [value]="products">
+<div class="conteiner" *ngIf="cartService.longOrders$ | async as longOrders">
+  <div *ngIf="longOrders.length > 0; else empty">
+    <p-table [value]="longOrders">
       <ng-template pTemplate="header">
         <tr>
           <th>Изображение</th>
           <th>Название</th>
           <th>Цена</th>
+          <th style="text-align: center">Количество</th>
           <th></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-products>
+      <ng-template pTemplate="body" let-longOrder>
         <tr>
           <td>
             <img
-              src="http://localhost:5001/{{ products.img }}"
+              src="{{url}}/{{ longOrder.product.img }}"
               alt="device"
               style="width: 50px"
             />
           </td>
-          <td>{{ products.name }}</td>
-          <td>{{ products.price }}руб</td>
+          <td>{{ longOrder.product.name }}</td>
+          <td>{{ longOrder.product.price }}руб</td>
+          <td style="text-align: center">
+            <p-inputNumber [ngModel]="longOrder.count" mode="decimal"
+                           [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="100"
+                           (ngModelChange)="cartService.changeCount(longOrder.product.id, $event)">
+            </p-inputNumber>
+          </td>
           <td style="text-align: center">
             <button
               pButton
               pRipple
               type="button"
               class="p-button-danger"
-              (click)="delete(products.id)"
+              (click)="delete(longOrder.product.id)"
             >
               Удалить
             </button>
@@ -35,7 +42,7 @@
       </ng-template>
     </p-table>
     <div style="font-size: 20px">
-      Цена всех товаров: {{ cart.totalPrice$ | async }}руб
+      Цена всех товаров: {{ cartService.totalPrice$ | async }}руб
     </div>
     <button
       pButton

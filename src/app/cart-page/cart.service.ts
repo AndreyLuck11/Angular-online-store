@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-  BehaviorSubject,
+  BehaviorSubject, forkJoin,
   map,
-  Observable,
+  Observable, pipe,
   Subject,
   switchMap,
   tap,
@@ -10,46 +10,31 @@ import {
 import { Product } from '../shared/interface';
 import { ProductService } from '../shared/product.service';
 import { Params } from '@angular/router';
-import { Order } from '../shared/interfaces/order.interface';
+import {LongOrder, Order} from '../shared/interfaces/order.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  public products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(
-    []
-  );
   public orders$: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>([]);
+
+  public longOrders$: BehaviorSubject<LongOrder[]> = new BehaviorSubject<LongOrder[]>([]);
 
   public totalPrice$: Observable<number>;
 
   constructor(private productService: ProductService) {
     this.getDataFromLocalStorage();
-    this.totalPrice$ = this.products$.pipe(
-      map((products: Product[]) => {
-        let totalPrice = 0;
-        products.forEach(
-          (product: Product) =>
-            (totalPrice = totalPrice + Number(product.price))
-        );
-        return totalPrice;
-      })
+
+    this.totalPrice$ = this.longOrders$.pipe(
+      map(this.checkPrice()),
     );
+
     this.orders$.subscribe((orders: Order[]) => {
       localStorage.setItem('cart', JSON.stringify(orders));
-      const newProducts$ = new BehaviorSubject<Product[]>([]);
-      orders.forEach((order) => {
-        this.productService
-          .getById(order.productId)
-          .subscribe((product: Product) => {
-            newProducts$.next([...newProducts$.value, product]);
-          });
-      });
-      newProducts$.subscribe((products: Product[]) => {
-        if (products.length == orders.length) {
-          this.products$.next(products);
-        }
-      });
+
+      forkJoin(orders.map((order: Order) => this.productService.getById(order.productId).pipe(
+        map((product: Product) => ({ product, count: order.count}))
+      ))).subscribe((longOrders: LongOrder[]) => this.longOrders$.next(longOrders))
     });
   }
 
@@ -76,10 +61,31 @@ export class CartService {
     ]);
   }
 
+  public changeCount(productId: number, count: number) {
+    const orders = this.orders$.value.map((order: Order) => {
+      if (order.productId === productId) {
+        order.count = count;
+      }
+      return order;
+    });
+    this.orders$.next(orders);
+  }
+
   private getDataFromLocalStorage() {
     const data = localStorage.getItem('cart');
     if (data !== null) {
       this.orders$.next(JSON.parse(data));
+    }
+  }
+
+  private checkPrice() {
+    return (longOrders: LongOrder[]) => {
+      let totalPrice = 0;
+      longOrders.forEach(
+        (longOrder: LongOrder) =>
+          (totalPrice = totalPrice + Number(longOrder.product.price) * Number(longOrder.count))
+      );
+      return totalPrice;
     }
   }
 }
