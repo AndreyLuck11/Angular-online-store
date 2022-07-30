@@ -19,24 +19,18 @@
       [routerLink]="['/product', product.id]"
     ></p-button>
 
-    <button
-      pButton
-      pRipple
-      type="button"
-      label="В корзину"
-      class="p-button-danger"
-      (click)="addToCart(product.id)"
-    ></button>
+<!--    <ng-container *ngTemplateOutlet="addButton"></ng-container>-->
 
-
-    <div *ngFor="let longOrder of longOrders">
-      <div *ngIf="longOrder.product.id === product.id">
+    <div *ngIf="cartR === true; else addButton ">
+<!--    <div *ngFor="let longOrder of longOrders">-->
+<!--      <div *ngIf="longOrder.product.id === product.id ">-->
         <p-inputNumber [ngModel]="longOrder.count" mode="decimal"
                        [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="100"
                        (ngModelChange)="cartService.changeCount(longOrder.product.id, $event)">
         </p-inputNumber>
       </div>
-    </div>
+<!--    </div>-->
+<!--    </div>-->
   </ng-template>
 
   <ng-template #addButton>
